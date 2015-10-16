@@ -56,18 +56,18 @@ public class EquestriaTest {
 	}
 
 	@Test
-	public void testLongestTripThreeCoords() {
-		fail("Not yet implemented");
+	public void testLongestTripThreeCoords() throws Exception {
+		assertEquals(29.732137494637012, Equestria.longestTrip(31, 9, 34, 16, 6, 6), 1D);
 	}
 
 	@Test
-	public void testLongestTripFourCoords() {
-		fail("Not yet implemented");
+	public void testLongestTripFourCoords() throws Exception {
+		assertEquals(37.57658845611187, Equestria.longestTrip(31, 9, 34, 16, 6, 6, 0, 0), 1D);
 	}
 
 	@Test
-	public void testLongestTripCoordArray() {
-		fail("Not yet implemented");
+	public void testLongestTripCoordArray() throws Exception {
+		assertEquals(37.57658845611187, Equestria.longestTrip(new double[][] {{31, 9}, {34, 16}, {6, 6}, {0, 0}, {1, 1}}), 1D);
 	}
 	
 	@Test(expected=Exception.class)

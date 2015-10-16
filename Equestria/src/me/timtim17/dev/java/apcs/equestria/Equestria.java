@@ -15,8 +15,9 @@ public class Equestria {
 	 * A method that, when run, will output some tests.
 	 * 
 	 * @param args Unused.
+	 * @throws Exception if any methods within throws an Exception.
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		/* Distance */
 		System.out.println("Distance from Baltimare (31, 9); to Manehattan (34, 16) = " + distance(31,  9,  34,  16));
 		System.out.println("Dinstance from Los Pegasus (6, 6) to Neighagra Falls (22, 18) = " + distance(6, 6, 22, 18));
@@ -28,6 +29,9 @@ public class Equestria {
 		
 		// Her triangular trip is a triangle at three cities: Baltimare (31, 9), Manehattan (34, 16), and Los Pegasus (6, 6)
 		lunaTour(31, 9, 34, 16, 6, 6);
+		
+		System.out.println("The longest distance from A (" + 31 + ", " + 9 + "), B (" + 34 + ", " + 16 + "), and C (" + 6 + ", " + 6 + ") = " +
+						   longestTrip(31, 9, 34, 16, 6, 6));
 	}
 	
 	/**
@@ -59,17 +63,18 @@ public class Equestria {
 	}
 		
 	/**
+	 * Prints the lengths and angles of a triangle with the passed in points.
 	 * 
 	 * @see City
 	 * @see #distance(double, double, double, double)
 	 * @see #angle(double, double, double)
 	 * @see #angle(double, double, double, boolean)
-	 * @param x1
-	 * @param y1
-	 * @param x2
-	 * @param y2
-	 * @param x3
-	 * @param y3
+	 * @param x1 The x coordinate of the first point.
+	 * @param y1 The y coordinate of the first point.
+	 * @param x2 The x coordinate of the second point.
+	 * @param y2 The y coordinate of the second point.
+	 * @param x3 The x coordinate of the third point.
+	 * @param y3 The y coordinate of the third point.
 	 */
 	public static void lunaTour(double x1, double y1, double x2, double y2, double x3, double y3) {
 		/*
@@ -118,11 +123,14 @@ public class Equestria {
 	}
 	
 	/**
+	 * Returns either the A, B, or C angle of a triangle given three lengths. Uses <a href="http://mathworld.wolfram.com/LawofCosines.html">The Law of Cosines</a>.
 	 * 
-	 * @param lenA
-	 * @param lenB
-	 * @param lenC
-	 * @return
+	 * @throws Exception if an invalid whichAngle is passed in.
+	 * @param lenA The length a of a triangle.
+	 * @param lenB The length b of a triangle.
+	 * @param lenC The length c of a triangle.
+	 * @param whichAngle The angle value to return. A = 1, B = 2, C = 3
+	 * @return The requested angle of the triangle in degrees.
 	 */
 	public static double angle(double lenA, double lenB, double lenC, int whichAngle) throws Exception {
 		if(whichAngle < 1 || whichAngle > 3) {
@@ -154,14 +162,16 @@ public class Equestria {
 	}
 	
 	/**
+	 * Same as {@link #angle(double, double, double, int)} but can optionally return radians.
 	 * 
 	 * @see #angle(double, double, double, int)
-	 * @throws Exception 
-	 * @param lenA
-	 * @param lenB
-	 * @param lenC
-	 * @param radians
-	 * @return
+	 * @throws Exception if an invalid whichAngle is passed in.
+	 * @param lenA The length a of a triangle.
+	 * @param lenB The length b of a triangle.
+	 * @param lenC The length c of a triangle.
+	 * @param whichAngle The angle value to return. A = 1, B = 2, C = 3
+	 * @param radians Whether to return radians or degrees.
+	 * @return The requested angle of the triangle in either degrees or radians.
 	 */
 	public static double angle(double lenA, double lenB, double lenC, int whichAngle, boolean radians) throws Exception {
 		double angleInDeg = angle(lenA, lenB, lenC, whichAngle);
@@ -171,6 +181,8 @@ public class Equestria {
 	
 	/**
 	 * 
+	 * @throws Exception if {@link #longestTrip(double[][])} throws an exception.
+	 * @see #longestTrip(double[][])
 	 * @param x1
 	 * @param y1
 	 * @param x2
@@ -179,10 +191,14 @@ public class Equestria {
 	 * @param y3
 	 * @return
 	 */
-	public static double longestTrip(double x1, double y1, double x2, double y2, double x3, double y3) {return 0.0;}
+	public static double longestTrip(double x1, double y1, double x2, double y2, double x3, double y3) throws Exception {
+		return longestTrip(new double[][] {{x1, y1}, {x2, y2}, {x3, y3}});
+	}
 	
 	/**
 	 * 
+	 * @throws Exception if {@link #longestTrip(double[][])} throws an exception.
+	 * @see #longestTrip(double[][])
 	 * @param x1
 	 * @param y1
 	 * @param x2
@@ -193,7 +209,9 @@ public class Equestria {
 	 * @param y4
 	 * @return
 	 */
-	public static double longestTrip(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4) {return 0.0;}
+	public static double longestTrip(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4) throws Exception {
+		return longestTrip(new double[][] {{x1, y1}, {x2, y2}, {x3, y3}, {x4, y4}});
+	}
 	
 	/**
 	 * 
@@ -203,6 +221,7 @@ public class Equestria {
 	 * @throws Exception if less than two coordinates given or each coordinate does not have exactly two points.
 	 */
 	public static double longestTrip(double[][] coords) throws Exception {
+		/* Verify that there are enough coords of the correct length. */
 		if(coords.length < 2) {
 			throw new Exception("Not enough coords given. Min 2.");
 		}
@@ -210,7 +229,39 @@ public class Equestria {
 		for(double[] coord : coords) {
 			if (coord.length != 2) throw new Exception("Invalid coord. Expecting length of 2.");
 		}
-		return 0.0;
+		
+		/*
+		 * number of combinations = nCr = n!/(r!(n-r)!)
+		 * n = coords.length
+		 * r = 2 (2 coords per combo)
+		 */
+		int n = coords.length,
+		    r = 2;
+		double[] distances = new double[factorial(n) / (factorial(r) * factorial(n - r))];
+		int index = 0;
+		
+		for(int i = 0; i < coords.length - 1; i++) {
+			for(int j = i + 1; j < coords.length; j++) {
+				distances[index] = distance(coords[i][0], coords[i][1], coords[j][0], coords[j][1]);
+				index++;
+			}
+		}
+		
+		double max = 0;
+		for(double d : distances) {
+			if(d > max) max = d;
+		}
+		
+		return max;
+	}
+	
+	// http://stackoverflow.com/questions/891031/is-there-a-method-that-calculates-a-factorial-in-java
+	private static int factorial(int n) {
+        int fact = 1; // this  will be the result
+        for (int i = 1; i <= n; i++) {
+            fact *= i;
+        }
+        return fact;
 	}
 	
 	/**
