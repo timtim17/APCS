@@ -1,0 +1,57 @@
+package me.timtim17.dev.java.apcs.equestria.test;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+import me.timtim17.dev.java.apcs.equestria.Equestria;
+
+public class EquestriaTest {
+
+	@Test
+	public void testDistance() {
+		assertEquals(7.615773105863909, Equestria.distance(31, 9, 34, 16), 1D);
+		assertEquals(20, Equestria.distance(6, 6, 22, 18), 1D);
+		assertEquals(12.041594578792296, Equestria.distance(25, 3, 16, 11), 1D);
+	}
+
+	@Test
+	public void testRoadTrip() {
+		assertEquals(53.40707511102649, Equestria.roadTrip(17), 1D);
+	}
+
+	@Test
+	public void testAngle() throws Exception {
+		// http://www.mathsisfun.com/algebra/trig-cosine-law.html
+		assertEquals(62.2, Equestria.angle(9, 5, 8, 3), 1D);
+	}
+	
+	@Test
+	public void testAngleException() throws Exception {}
+	
+	@Test
+	public void testAngleRadiansFalse() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testAngleRadiansTrue() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testLongestTripThreeCoords() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testLongestTripFourCoords() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testLongestTripCoordArray() {
+		fail("Not yet implemented");
+	}
+
+}
