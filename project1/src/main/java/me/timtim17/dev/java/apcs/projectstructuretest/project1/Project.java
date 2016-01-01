@@ -24,7 +24,7 @@ public class Project {
      * Returns an answer based upon the passed in question.
      *
      * @param question The question asked.
-     * @return The answer to the passed in question, or {@code null} if an invalid question is passed in.
+     * @return         The answer to the passed in question, or {@code null} if an invalid question is passed in.
      */
     public static Object answer(Question question) {
         if (question.equals(QUESTION_LIFE_THE_UNIVERSE_AND_EVERYTHING)) {
