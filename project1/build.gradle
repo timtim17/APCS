@@ -1,0 +1,4 @@
+dependencies {
+    compile 'org.hamcrest:hamcrest-all:+'
+    compile 'org.apache.commons:commons-lang3:+'
+}
